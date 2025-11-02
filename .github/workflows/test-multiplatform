@@ -1,0 +1,60 @@
+name: Multi-Platform Testing
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  ubuntu-job:
+    name: Ubuntu Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Print OS information
+        run: uname -a
+      
+      - name: Show directory
+        run: pwd
+      
+      - name: Create and display file
+        run: |
+          echo "Running on Ubuntu" > test-ubuntu.txt
+          cat test-ubuntu.txt
+
+  windows-job:
+    name: Windows Job
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Print OS information
+        run: systeminfo | findstr /B /C:"OS Name" /C:"OS Version"
+      
+      - name: Show directory
+        run: pwd
+      
+      - name: Create and display file
+        run: |
+          echo "Running on Windows" > test-windows.txt
+          type test-windows.txt
+
+  macos-job:
+    name: macOS Job
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Print OS information
+        run: uname -a
+      
+      - name: Show directory
+        run: pwd
+      
+      - name: Create and display file
+        run: |
+          echo "Running on macOS" > test-macos.txt
+          cat test-macos.txt
